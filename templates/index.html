@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+{%- block head -%}{%- include 'head.html' -%}{%- endblock -%}
+<body>
+    {%- block nav -%}{%- include 'nav.html' -%}{%- endblock -%}
+    <div class="container">
+        {%- block body -%}
+
+            <div class="page-header">
+                <h3 class="orange"><small>早上好,</small> {{ session.user.name }} <small>{% if session.user.role == 'student' %}同学{% elif session.user.role == 'teacher' %}老师{% elif session.user.role == 'admin' %}administraor{% endif %}</small></h3>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">消息通知({{ messages|length }})</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">[计算机组成原理] 发布了作业 <span class="pull-right">下午 4:00</span></a>
+                                <a href="#" class="list-group-item">[高等数学] 发布了课件 <span class="pull-right">下午 5:20</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">今日课程概览</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="list-group">
+                                <a href="#" class="list-group-item">JAVA高级编程 - 王大锤<span class="pull-right">上午 8:20</span></a>
+                                <a href="#" class="list-group-item">马克思主义基本原理 - 张全蛋<span class="pull-right">下午 1:30</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        {%- endblock -%}
+    </div>
+</body>
+</html>

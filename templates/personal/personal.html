@@ -1,0 +1,18 @@
+{%- extends 'index.html' -%}
+{%- block body -%}
+
+<ul class="nav nav-tabs" role="tablist">
+{% if session.user.role == 'student' %}
+	<li role="presentation" {% if active_tab == 'profile' %}class="active"{% endif %}><a href="{{ url_for('profile') }}">学籍信息</a></li>
+	<li role="presentation" {% if active_tab == 'profile-movement' %}class="active"{% endif %}><a href="{{ url_for('profile_movement') }}">学籍异动</a></li>
+	<li role="presentation" {% if active_tab == 'rewards-and-punishments' %}class="active"{% endif %}><a href="{{ url_for('rewards_and_punishments') }}">奖惩信息</a></li>
+{% elif session.user.role == 'teacher' %}
+	<li role="presentation" {% if active_tab == 'profile' %}class="active"{% endif %}><a href="{{ url_for('profile') }}">教师信息</a></li>
+	
+{% endif %}
+
+</ul>
+
+{%- block content -%}{%- endblock -%}
+
+{%- endblock -%}

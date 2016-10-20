@@ -1,0 +1,20 @@
+{%- extends 'index.html' -%}
+{%- block body -%}
+
+<ol class="breadcrumb">
+    <li><a href="#">计算机科学与技术(研究型）专业指导性培养方案(主修)</a></li>
+    <li><a href="#">选择课程类型</a></li>
+</ol>
+
+<div class="col-md-10 col-md-offset-1">
+    <div class="page-header">
+        <h3>请选择课程类型</h3>
+    </div>
+    <div class="list-group">
+        <a href="{{ url_for('select_course_id') }}" class="list-group-item">方案课程</a>
+        <a href="#" class="list-group-item">系任选课</a>
+        <a href="#" class="list-group-item">校任选课</a>
+    </div>
+</div>
+
+{%- endblock -%}

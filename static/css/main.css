@@ -1,0 +1,20 @@
+html, body {height: 100%;margin: 0;}
+
+.orange {
+    color: #e67e22;
+}
+
+.enrollment-status td:nth-child(odd){
+    text-align:right;
+    width: 180px;
+    font-weight: 600;
+}
+
+.enrollment-status td:nth-child(even){
+    text-align:left;
+    width: 275px;
+}
+
+.course td {
+    text-align: center;
+}

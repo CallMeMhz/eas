@@ -1,0 +1,37 @@
+<nav class="navbar navbar-default" role="navigation">
+	<div class="container-fluid">
+		<div class="navbar-header">
+		<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="{{ url_for('index') }}">E.A.S</a>
+		</div>
+
+		<div class="navbar-collapse collapse" id="navbar-main">
+			<ul class="nav navbar-nav">
+			{% if session.user %}
+				<li {% if active_nav == 'index' %}class="active"{% endif %}><a href="{{ url_for('index') }}">首页</a></li>
+				<li {% if active_nav == 'personal' %}class="active"{% endif %}><a href="{{ url_for('personal') }}">个人管理</a></li>
+				<li {% if active_nav == 'courses' %}class="active"{% endif %}><a href="{{ url_for('courses') }}">课程管理</a></li>
+			{% if session.user.role == 'student' %}
+				<li {% if active_nav == 'apply-for-courses' %}class="active"{% endif %}><a href="{{ url_for('apply_for_courses') }}">选课系统</a></li>
+			{% endif %}
+			{% if session.user.role == 'admin' %}
+				<li {% if active_nav == 'new-course' %}class="active"{% endif %}><a href="{{ url_for('new_course') }}">New Course</a></li>
+			{% endif %}
+				<li {% if active_nav == 'messages' %}class="active"{% endif %}><a href="{{ url_for('messages_list') }}">消息通知 <span class="badge">4</span></a></li>
+			{% endif %}
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+			{% if session.user %}
+				<li><a href="{{ url_for('logout') }}">注销</a></li>
+			{% else %}
+				<li><a href="{{ url_for('login') }}">登录</a></li>
+			{% endif %}
+			</ul>
+		</div>
+	</div>
+</nav>

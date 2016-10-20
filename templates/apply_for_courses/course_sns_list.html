@@ -1,0 +1,38 @@
+{%- extends 'index.html' -%}
+{%- block body -%}
+
+<ol class="breadcrumb">
+    <li><a href="#">计算机科学与技术(研究型）专业指导性培养方案(主修)</a></li>
+    <li><a href="#">方案课程</a></li>
+    <li><a href="{{ url_for('select_course_id', course_id=courses[0].id) }}">{{ courses[0].name }} ({{ courses[0].id }})</a></li>
+    <li><a href="#">Select S/N</a></li>
+</ol>
+
+<div class="page-header">
+    <h3>{{ courses[0].name }}({{ courses[0].id }})</h3>
+</div>
+
+<table class="table table-hover courses">
+    <thead>
+        <tr>
+            <th width="120">S/N</th>
+            <th width="120">Teacher</th>
+            <th width="80">Rest/Capacity</th>
+            <th>Timetable</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for course in courses %}
+        <tr>
+            <th>{{ course.sn }}</th>
+            <th>{{ course.teacher_name }}</a></th>
+            <th>{{ course.rest }}/{{ course.capacity }}</th>
+            <th>{{ course.timetable }}</th>
+            <th><a class="btn btn-sm btn-primary" href="">Apply</a></th>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+{%- endblock -%}

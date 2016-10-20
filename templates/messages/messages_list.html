@@ -1,0 +1,15 @@
+{%- extends 'index.html' -%}
+{%- block body -%}
+
+<div class="col-md-10 col-md-offset-1">
+	<div class="page-header">
+		<h3>Messages (2/2)</h3>
+	</div>
+	<div class="list-group">
+		<a href="{{ url_for('message_detail', message_id=123) }}" class="list-group-item">[12:22] <span class="orange">计算机组成原理</span> 发布了作业</a>
+		<a href="#" class="list-group-item">[06:02] <span class="orange">高等数学</span> 发布了课件</a>
+	</div>
+</div>
+
+
+{%- endblock -%}

@@ -1,0 +1,48 @@
+{%- extends 'courses/courses.html' -%}
+
+{% block head %}
+{{ super() }}
+<link href='{{ url_for("static", filename="css/fullcalendar.css") }}' rel='stylesheet' />
+<link href='{{ url_for("static", filename="css/fullcalendar.print.css") }}' rel='stylesheet' media='print' />
+<script src='{{ url_for("static", filename="script/moment.min.js") }}'></script>
+<script src='{{ url_for("static", filename="script/fullcalendar.min.js") }}'></script>
+
+<script>
+
+	$(document).ready(function() {
+		
+		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'month,agendaWeek,agendaDay,listWeek'
+			},
+			defaultDate: '2016-09-12',
+			navLinks: true, // can click day/week names to navigate views
+
+			weekNumbers: true,
+			weekNumbersWithinDays: true,
+			weekNumberCalculation: 'ISO',
+
+			editable: true,
+			eventLimit: true, // allow "more" link when too many events
+			events: [
+				{
+					title: 'Long Event',
+					start: '2016-09-07',
+					end: '2016-09-10'
+				},
+			]
+		});
+		
+	});
+
+</script>
+{% endblock %}
+
+{%- block content -%}
+
+<br>
+<div id='calendar'></div>
+
+{%- endblock -%}

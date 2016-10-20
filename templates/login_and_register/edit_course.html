@@ -1,0 +1,100 @@
+{%- extends 'index.html' -%}
+{%- block body -%}
+
+<div class="jumbotron">
+	<h1>Edit Course</h1>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+	<ul>
+	{% for message in messages %}
+		<li>{{ message }} </li>
+	{% endfor %}
+	</ul>
+	{% endif %}
+{% endwith %}
+	<form class="form-horizontal" action="{{ url_for('new_course') }}" method="post" name="new-course">
+	<fieldset disabled>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Course ID:</label>
+			<div class="col-md-10">
+				<input type="text" name="course-id" class="form-control" value="{{ course._id }}" placeholder="{{ course._id }}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">S/N:</label>
+			<div class="col-md-10">
+				<input type="text" name="course-sn" class="form-control" value="{{ course.sn }}" placeholder="{{ course.sn }}">
+			</div>
+		</div>
+	</fieldset>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Course Name:</label>
+			<div class="col-md-10">
+				<input type="text" name="course-name" class="form-control" value="{{ course.name }}" placeholder="{{ course.name }}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Credit:</label>
+			<div class="col-md-10">
+				<input type="text" name="course-credit" class="form-control" value="{{ course.credit }}" placeholder="{{ course.credit }}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Fee:</label>
+			<div class="col-md-10">
+				<input type="text" name="course-fee" class="form-control" value="{{ course.fee }}" placeholder="{{ course.fee }}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Course Capacity:</label>
+			<div class="col-md-10">
+				<input type="text" name="course-capacity" class="form-control" value="{{ course.capacity }}" placeholder="{{ course.capacity }}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Property:</label>
+			<div class="col-md-10">
+				<select name="course-property" class="form-control">
+					<option value="compulsory" {% if course.prop == 'compulsory' %} selected="selected" {% endif %}>Compulsory</option>
+					<option value="elective" {% if course.prop == 'elective' %} selected="selected" {% endif %}>Elective</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Examination Method:</label>
+			<div class="col-md-10">
+				<select name="course-exam-method" class="form-control">
+					<option value="examination" {% if course.exam_method == 'examination' %} selected="selected" {% endif %}>Examination</option>
+					<option value="review" {% if course.exam_method == 'review' %} selected="selected" {% endif %}>Review</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Teacher Id:</label>
+			<div class="col-md-10">
+				<input type="text" name="teacher-id" class="form-control" value="{{ course.teacher_id }}" placeholder="{{ course.teacher_id }}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Teacher Name:</label>
+			<div class="col-md-10">
+				<input type="text" name="teacher-name" class="form-control" value="{{ course.teacher_name }}" placeholder="{{ course.teacher_name }}">
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-md-2 control-label">Timetable:</label>
+			<div class="col-md-10">
+				<input type="text" name="timetable" class="form-control" value="{{ course.timetable }}" placeholder="{{ course.timetable }}">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" class="btn btn-primary">Update</button>
+			</div>
+		</div>
+		<input type="hidden" name="is-edit-model" value="yes">
+	</form>
+</div>
+
+{%- endblock -%}

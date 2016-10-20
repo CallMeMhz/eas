@@ -1,0 +1,17 @@
+{%- extends 'index.html' -%}
+{%- block body -%}
+
+<ol class="breadcrumb">
+    <li><a href="#">选择培养方案</a></li>
+</ol>
+
+<div class="col-md-10 col-md-offset-1">
+    <div class="page-header">
+        <h3>请选择培养方案</h3>
+    </div>
+    <div class="list-group">
+        <a href="{{ url_for('select_course_type') }}" class="list-group-item">计算机科学与技术(研究型）专业指导性培养方案(主修)</a>
+    </div>
+</div>
+
+{%- endblock -%}
