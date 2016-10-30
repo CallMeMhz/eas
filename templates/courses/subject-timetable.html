@@ -17,7 +17,7 @@
 				center: 'title',
 				right: 'month,agendaWeek,agendaDay,listWeek'
 			},
-			defaultDate: '2016-09-12',
+			// defaultDate: '2016-10-21',
 			navLinks: true, // can click day/week names to navigate views
 
 			weekNumbers: true,
@@ -27,11 +27,13 @@
 			editable: true,
 			eventLimit: true, // allow "more" link when too many events
 			events: [
+			{% for item in timetables %}
 				{
-					title: 'Long Event',
-					start: '2016-09-07',
-					end: '2016-09-10'
+					title: '{{ item.name }} {{ item.location }}',
+					start: '{{ item.start }}',
+					end: '{{ item.end }}'
 				},
+			{% endfor %}
 			]
 		});
 		
@@ -43,6 +45,18 @@
 {%- block content -%}
 
 <br>
-<div id='calendar'></div>
+<div class="row">
+	<div class="col-md-8">
+		<div id="calendar"></div>
+	</div>
+	<div class="col-md-4">
+		<div class="page-header">
+			<h3>Courses List</h3>
+		</div>
+		<div class="list-group">
+			<a class="list-group-item">Test</a>
+		</div>
+	</div>
+</div>
 
 {%- endblock -%}

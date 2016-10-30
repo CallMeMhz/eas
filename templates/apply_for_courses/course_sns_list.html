@@ -29,7 +29,17 @@
             <th>{{ course.teacher_name }}</a></th>
             <th>{{ course.rest }}/{{ course.capacity }}</th>
             <th>{{ course.timetable }}</th>
-            <th><a class="btn btn-sm btn-primary" href="">Apply</a></th>
+            <th>
+                <form action="{{ url_for('apply_for_courses') }}" method="post">
+                    <input type="hidden" name="cid" value="{{ courses[0].id }}">
+                    <input type="hidden" name="csn" value="{{ course.sn }}">
+                    <input type="hidden" name="cname" value="{{ courses[0].name }}">
+                    <input type="hidden" name="teacher_id" value="{{ course.teacher_id }}">
+                    <input type="hidden" name="teacher_name" value="{{ course.teacher_name }}">
+                    <input type="hidden" name="timetable" value="{{ course.timetable }}">
+                    <input type="submit" class="btn btn-sm btn-primary" value="Apply">
+                </form>
+            </th>
         </tr>
     {% endfor %}
     </tbody>

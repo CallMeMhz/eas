@@ -11,7 +11,6 @@ class User:
     def __init__(self, default_config):
         self.collection = default_config['USERS_COLLECTION']
         self.uid = None
-        self.username = None
         self.role = None
         self.session_key = 'user'
         self.response = {'error': None, 'data': None}

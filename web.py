@@ -183,7 +183,12 @@ def courses():
 @app.route('/courses/subject-timetable')
 @login_required()
 def subject_timetable():
-    return render_template('courses/subject-timetable.html', active_nav='courses', active_tab='subject-timetable')
+    user_data = userClass.get_user(session.get('user')['uid'])
+    timetables = []
+    for course in user_data['data']['courses']:
+        tt = courseClass.timetable_to_iso(course['timetable'])
+        [timetables.append(t) for t in tt]
+    return render_template('courses/subject-timetable.html', active_nav='courses', active_tab='subject-timetable', timetables=timetables)
 
 
 @app.route('/courses/examination-results')
@@ -192,9 +197,33 @@ def examination_results_query():
     return render_template('courses/examination_results.html', active_nav='courses', active_tab='examination-results')
 
 
-@app.route('/apply-for-courses')
+@app.route('/apply-for-courses', methods=['GET', 'POST'])
 @login_required('student')
 def apply_for_courses():
+    if request.method == 'POST':
+        uid = session.get('user')['uid']
+        cid = request.form.get('cid')
+        csn = request.form.get('csn')
+        cname = request.form.get('cname')
+        teacher_id = request.form.get('teacher_id')
+        teacher_name = request.form.get('teacher_name')
+        timetable = request.form.get('timetable')
+        user_data = userClass.get_user(uid)
+        try:
+            userClass.collection.update({'_id': uid}, {
+                '$push': {'courses': {
+                    'cid': cid,
+                    'csn': csn,
+                    'cname': cname,
+                    'teacher_id': teacher_id,
+                    'teacher_name': teacher_name,
+                    'timetable': timetable
+                }}
+            })
+            # flash('Apply Success', 'success')
+        except Exception, e:
+            userClass.print_debug_info(e)
+
     return redirect(url_for('select_scheme'))
 
 

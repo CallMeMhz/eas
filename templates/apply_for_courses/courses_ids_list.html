@@ -13,9 +13,9 @@
             <th width="120">课程号</th>
             <th>课程名</th>
             <th width="80">学分</th>
-            <th width="80">收费标准</th>
-            <th width="80">课程属性</th>
-            <th width="80">考试类型</th>
+            <th width="120">收费标准</th>
+            <th width="120">课程属性</th>
+            <th width="120">考试类型</th>
         </tr>
     </thead>
     <tbody>
@@ -24,7 +24,7 @@
             <th>{{ course.id }}</th>
             <th><a href="{{ url_for('select_course_sn', course_id=course.id) }}">{{ course.name }}</a></th>
             <th>{{ course.credit }}</th>
-            <th>${{ course.fee }}</th>
+            <th>￥{{ course.fee }}</th>
             <th>{{ course.prop.capitalize() }}</th>
             <th>{{ course.exam_method.capitalize() }}</th>
         </tr>

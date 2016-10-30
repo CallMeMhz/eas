@@ -1,3 +1,5 @@
+from datetime import datetime, timedelta
+
 class Course:
 
     def __init__(self, default_config):
@@ -79,6 +81,28 @@ class Course:
             self.print_debug_info(e, self.debug_mode)
             self.response['error'] = 'Courses not found..'
         return self.response
+
+    @staticmethod
+    def timetable_to_iso(timetable):
+        response = []
+        for tt in timetable.split(';'):
+            for tt_weaks in tt.split(':')[1].split(','):
+                if '-' in tt_weaks:
+                    pass
+                else:
+                    for tt_weak in tt.split(':')[2].split(','):
+                        if '-' in tt_weak:
+                            pass
+                        else:
+                            for tt_period in tt.split(':')[3].split(','):
+                                # tt_location = tt.split(':')[3].split('-')
+                                response.append({
+                                    'name': tt.split(':')[0],
+                                    'location': tt.split(':')[4],
+                                    'start': datetime(2016,10,3) + timedelta(days=7*(int(tt_weaks)-1)+(int(tt_weak)-1)) + timedelta(hours=8, minutes=20) + timedelta(hours=2*(int(tt_period)-1)),
+                                    'end': datetime(2016,10,3) + timedelta(days=7*(int(tt_weaks)-1)+(int(tt_weak)-1)) + timedelta(hours=8, minutes=20) + timedelta(hours=2*(int(tt_period)-1)) + timedelta(hours=2)
+                                })
+        return response
 
     @staticmethod
     def print_debug_info(msg, show=False):

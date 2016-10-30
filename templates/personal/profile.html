@@ -1,4 +1,6 @@
-{%- extends 'personal/personal.html' -%} {%- block content -%} {% if session.user.role == 'student' %}
+{%- extends 'personal/personal.html' -%}
+{%- block content -%}
+{% if session.user.role == 'student' %}
 <table class="table table-striped profile">
     <thead>
         <tr>
